@@ -132,10 +132,18 @@ public class LocaleActivity extends BaseSetupWizardActivity {
     private void loadLanguages() {
         mLocaleAdapter = com.android.internal.app.LocalePicker.constructAdapter(this,
                 R.layout.locale_picker_item, R.id.locale);
-        mCurrentLocale = Locale.getDefault();
+// BEGIN CHITANG UI
+        // mCurrentLocale = Locale.getDefault();
+        mCurrentLocale = new Locale("zh", "CN");
+// END CHITANG UI
         fetchAndUpdateSimLocale();
         mAdapterIndices = new int[mLocaleAdapter.getCount()];
-        int currentLocaleIndex = 0;
+// BEGIN CHITANG UI
+        // int currentLocaleIndex = 0;
+        int currentLocaleIndex = -1;
+        Locale defaultLocale = Locale.getDefault();
+        int defaultLocaleIndex = 0;
+// END CHITANG UI
         String[] labels = new String[mLocaleAdapter.getCount()];
         for (int i = 0; i < mAdapterIndices.length; i++) {
             com.android.internal.app.LocalePicker.LocaleInfo localLocaleInfo =
@@ -144,14 +152,27 @@ public class LocaleActivity extends BaseSetupWizardActivity {
             if (localLocale.equals(mCurrentLocale)) {
                 currentLocaleIndex = i;
             }
+// BEGIN CHITANG UI
+            if (localLocale.equals(defaultLocale)) {
+                defaultLocaleIndex = i;
+            }
+// END CHITANG UI
             mAdapterIndices[i] = i;
             labels[i] = localLocaleInfo.getLabel();
         }
+// BEGIN CHITANG UI
+        if (currentLocaleIndex == -1) {
+            currentLocaleIndex = defaultLocaleIndex;
+        }
+// END CHITANG UI
         mLanguagePicker.setDisplayedValues(labels);
         mLanguagePicker.setMaxValue(labels.length - 1);
         mLanguagePicker.setValue(currentLocaleIndex);
         mLanguagePicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         mLanguagePicker.setOnValueChangedListener((pkr, oldVal, newVal) -> setLocaleFromPicker());
+// BEGIN CHITANG UI
+        setLocaleFromPicker();
+// END CHITANG UI
 
         mLanguagePicker.setOnScrollListener((view, scrollState) -> {
             if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
