@@ -19,7 +19,9 @@
     <string name="app_name">设置向导</string>
     <string name="next">下一步</string>
     <string name="skip">跳过</string>
-    <string name="start">开始</string>
+    <!-- BEGIN CHITANG UI -->
+    <string name="start">急急急</string>
+    <!-- END CHITANG UI -->
     <string name="done">完成</string>
     <string name="ok">确定</string>
     <string name="loading">稍等片刻\u2026</string>

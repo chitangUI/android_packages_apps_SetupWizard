@@ -40,7 +40,16 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:gravity="center"
-            android:padding="@dimen/content_margin_left"/>
+            android:padding="@dimen/content_margin_left" />
+
+        <!-- BEGIN CHITANG UI -->
+        <TextView
+            android:id="@+id/chitang_ui_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="你可以开始发癫或成为暝灯了" />
+        <!-- END CHITANG UI -->
 
         <org.lineageos.setupwizard.NavigationLayout
             android:id="@+id/navigation_bar"
@@ -54,6 +63,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/reveal"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </org.lineageos.setupwizard.widget.ScrimInsetsFrameLayout>
