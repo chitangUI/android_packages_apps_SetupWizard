@@ -135,9 +135,15 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
 
     private void updateMetricsOption() {
         final Bundle myPageBundle = mSetupWizardApp.getSettingsBundle();
-        boolean metricsChecked =
-                !myPageBundle.containsKey(KEY_SEND_METRICS) || myPageBundle
-                        .getBoolean(KEY_SEND_METRICS);
+// BEGIN CHITANG UI
+        // boolean metricsChecked =
+        //         !myPageBundle.containsKey(KEY_SEND_METRICS) || myPageBundle
+        //                 .getBoolean(KEY_SEND_METRICS);
+        boolean metricsChecked = false;
+        if (myPageBundle.containsKey(KEY_SEND_METRICS)) {
+            metricsChecked = myPageBundle.getBoolean(KEY_SEND_METRICS);
+        }
+// END CHITANG UI
         mMetrics.setChecked(metricsChecked);
         myPageBundle.putBoolean(KEY_SEND_METRICS, metricsChecked);
     }
